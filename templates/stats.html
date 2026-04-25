@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>数据看板 - 校园生态</title>
+    <script src="https://modao.cc/agent-py/static/source/js/tailwindcss.3.4.3.js"></script>
+    <script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.1.0.7.js"></script>
+    <script src="https://modao.cc/agent-py/static/source/js/echarts.min.5.4.3.js"></script>
+    <style>
+        body { background-color: #f3f4f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .phone-container { width: 375px; height: 812px; background: #f8fafc; border-radius: 40px; position: relative; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border: 8px solid #1a1a1a; display: flex; flex-direction: column; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body>
+<div class="phone-container">
+    <!-- 头部导航 -->
+    <div class="px-6 pt-12 pb-4 bg-white">
+        <h1 class="text-xl font-black text-gray-800">校园生态看板</h1>
+        <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">Campus Ecological Data Dashboard · 2026.04.22</p>
+    </div>
+    <div class="flex-1 overflow-y-auto hide-scrollbar px-4 py-4 space-y-4 pb-24">
+        <!-- 核心指标 -->
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded-3xl shadow-sm border border-gray-100">
+                <p class="text-xs text-gray-400 mb-1">活跃猫咪数</p>
+                <div class="flex items-baseline gap-2">
+                    <span class="text-2xl font-black text-gray-800">42</span>
+                    <span class="text-[10px] text-green-500 font-bold">+2 较昨日</span>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-3xl shadow-sm border border-gray-100">
+                <p class="text-xs text-gray-400 mb-1">今日打卡人次</p>
+                <div class="flex items-baseline gap-2">
+                    <span class="text-2xl font-black text-gray-800">1,284</span>
+                    <span class="text-[10px] text-orange-500 font-bold">↑ 12%</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 热力图/活跃趋势 -->
+        <div class="bg-white p-4 rounded-3xl shadow-sm border border-gray-100">
+            <h3 class="text-sm font-bold text-gray-800 mb-4 flex items-center justify-between">
+                活跃时间趋势
+                <span class="text-[10px] font-normal text-gray-400">近24小时数据</span>
+            </h3>
+            <div class="w-full h-40" id="trendChart"></div>
+        </div>
+
+        <!-- 明星猫咪排行榜 (已修改图片路径) -->
+        <div class="bg-white p-4 rounded-3xl shadow-sm border border-gray-100">
+            <h3 class="text-sm font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <iconify-icon class="text-orange-400" icon="ph:crown-bold"></iconify-icon>
+                人气猫咪榜
+            </h3>
+            <div class="space-y-4">
+                <!-- No.1 大橘 -->
+                <div class="flex items-center gap-3">
+                    <span class="text-sm font-black text-orange-500 w-4">1</span>
+                    <!-- 修改点：大橘的图片路径 -->
+                    <img class="w-10 h-10 rounded-full object-cover border border-gray-100" 
+                         src="../static/images/cats/d52d7bb9336778f016db84fa8947a51b.jpg" 
+                         alt="大橘"
+                         onerror="this.src='https://placehold.co/40x40/e2e8f0/94a3b8?text=Cat'"/>
+                    <div class="flex-1">
+                        <p class="text-xs font-bold text-gray-700">大橘 (图书馆)</p>
+                        <div class="w-full bg-gray-100 h-1.5 rounded-full mt-1">
+                            <div class="bg-orange-400 h-full rounded-full" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <span class="text-[10px] text-gray-400 font-medium">9.2k 互动</span>
+                </div>
+
+                <!-- No.2 奶牛 -->
+                <div class="flex items-center gap-3">
+                    <span class="text-sm font-black text-gray-400 w-4">2</span>
+                    <!-- 修改点：奶牛的图片路径 -->
+                    <img class="w-10 h-10 rounded-full object-cover border border-gray-100" 
+                         src="../static/images/cats/641e61d1488213e1bae2aaa5da70a4a0.jpg" 
+                         alt="奶牛"
+                         onerror="this.src='https://placehold.co/40x40/e2e8f0/94a3b8?text=Cat'"/>
+                    <div class="flex-1">
+                        <p class="text-xs font-bold text-gray-700">奶牛 (体育馆)</p>
+                        <div class="w-full bg-gray-100 h-1.5 rounded-full mt-1">
+                            <div class="bg-orange-300 h-full rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <span class="text-[10px] text-gray-400 font-medium">8.5k 互动</span>
+                </div>
+
+                <!-- No.3 警长 -->
+                <div class="flex items-center gap-3">
+                    <span class="text-sm font-black text-gray-400 w-4">3</span>
+                    <!-- 修改点：警长的图片路径 -->
+                    <img class="w-10 h-10 rounded-full object-cover border border-gray-100" 
+                         src="../static/images/cats/b9231616b36dee649e581e02b89f5419.jpg" 
+                         alt="警长"
+                         onerror="this.src='https://placehold.co/40x40/e2e8f0/94a3b8?text=Cat'"/>
+                    <div class="flex-1">
+                        <p class="text-xs font-bold text-gray-700">警长 (A座)</p>
+                        <div class="w-full bg-gray-100 h-1.5 rounded-full mt-1">
+                            <div class="bg-orange-200 h-full rounded-full" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <span class="text-[10px] text-gray-400 font-medium">7.0k 互动</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 投喂达人 (此处头像仍为占位符，如需修改请提供对应用户头像路径) -->
+<!-- 投喂达人 -->
+<div class="bg-gradient-to-br from-gray-900 to-gray-800 p-5 rounded-3xl text-white">
+    <h3 class="text-sm font-bold mb-4 flex items-center justify-between">
+        贡献之星排行
+        <iconify-icon class="text-yellow-400 text-xl" icon="ph:medal-bold"></iconify-icon>
+    </h3>
+    <div class="flex justify-between items-end gap-2 text-center pb-2">
+        
+        <!-- 第二名: Lucky_02 -->
+        <div class="flex-1">
+            <div class="relative inline-block mb-2">
+                <!-- 修改点：替换为 images/gongxian/2.jpg -->
+                <img class="w-10 h-10 rounded-full border-2 border-white/20 mx-auto object-cover" 
+                     src="../static/images\gongxian\2d15d43a6488445ff3268869d169919c.jpg" 
+                     alt="Lucky_02"
+                     onerror="this.src='https://placehold.co/40x40/e2e8f0/94a3b8?text=User'"/>
+                <span class="absolute -bottom-1 -right-1 bg-gray-400 w-4 h-4 rounded-full text-[8px] flex items-center justify-center font-bold">2</span>
+            </div>
+            <p class="text-[10px] font-medium truncate">Lucky_02</p>
+        </div>
+
+        <!-- 第一名: 猫咪守护者 -->
+        <div class="flex-1 pb-4">
+            <div class="relative inline-block mb-2">
+                <!-- 修改点：替换为 images/gongxian/1.jpg -->
+                <img class="w-14 h-14 rounded-full border-4 border-yellow-400 mx-auto object-cover" 
+                     src="../static/images\gongxian\49753505cf193292aff2c4d080e46d2a.jpg" 
+                     alt="猫咪守护者"
+                     onerror="this.src='https://placehold.co/56x56/e2e8f0/94a3b8?text=User'"/>
+                <span class="absolute -bottom-1 -right-1 bg-yellow-400 w-5 h-5 rounded-full text-[10px] text-black flex items-center justify-center font-bold">1</span>
+            </div>
+            <p class="text-xs font-bold truncate">猫咪守护者</p>
+        </div>
+
+        <!-- 第三名: Campus_Meow -->
+        <div class="flex-1">
+            <div class="relative inline-block mb-2">
+                <!-- 修改点：替换为 images/gongxian/3.jpg -->
+                <img class="w-10 h-10 rounded-full border-2 border-white/20 mx-auto object-cover" 
+                     src="../static/images\gongxian\ee031261ddf84c4f76819b4800edd2ab.jpg" 
+                     alt="Campus_Meow"
+                     onerror="this.src='https://placehold.co/40x40/e2e8f0/94a3b8?text=User'"/>
+                <span class="absolute -bottom-1 -right-1 bg-orange-600 w-4 h-4 rounded-full text-[8px] flex items-center justify-center font-bold">3</span>
+            </div>
+            <p class="text-[10px] font-medium truncate">Campus_Meow</p>
+        </div>
+
+    </div>
+</div>
+    <!-- 底部导航 -->
+    <div class="absolute bottom-0 w-full h-20 bg-white border-t border-gray-100 px-6 flex justify-between items-center z-50">
+        <a class="flex flex-col items-center gap-1 text-gray-400" href="index.html">
+            <iconify-icon class="text-2xl" icon="ri:map-2-line"></iconify-icon>
+            <span class="text-[10px]">地图</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-gray-400" href="list.html">
+            <iconify-icon class="text-2xl" icon="ri:function-line"></iconify-icon>
+            <span class="text-[10px]">图鉴</span>
+        </a>
+        <a class="flex flex-col items-center -mt-10" href="check-in.html">
+            <div class="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl shadow-lg shadow-orange-200 flex items-center justify-center text-white text-2xl border-4 border-white">
+                <iconify-icon icon="tabler:camera-plus"></iconify-icon>
+            </div>
+            <span class="text-[10px] mt-1 text-orange-500 font-bold">打卡</span>
+        </a>
+        <div class="flex flex-col items-center gap-1 text-orange-500">
+            <iconify-icon class="text-2xl" icon="ri:bar-chart-box-fill"></iconify-icon>
+            <span class="text-[10px] font-bold">看板</span>
+        </div>
+        <a class="flex flex-col items-center gap-1 text-gray-400" href="profile.html">
+            <iconify-icon class="text-2xl" icon="ri:user-3-line"></iconify-icon>
+            <span class="text-[10px]">我的</span>
+        </a>
+    </div>
+</div>
+
+<script>
+    const chartDom = document.getElementById('trendChart');
+    const myChart = echarts.init(chartDom);
+    const option = {
+        grid: { top: 10, left: 10, right: 10, bottom: 20, containLabel: false },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '23:59'],
+            axisLine: { show: false },
+            axisTick: { show: false },
+            axisLabel: { color: '#94a3b8', fontSize: 10 }
+        },
+        yAxis: { type: 'value', show: false },
+        series: [{
+            data: [120, 80, 450, 780, 920, 650, 200],
+            type: 'line',
+            smooth: true,
+            showSymbol: false,
+            lineStyle: { color: '#fb923c', width: 3 },
+            areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                    { offset: 0, color: 'rgba(251, 146, 60, 0.2)' },
+                    { offset: 1, color: 'rgba(251, 146, 60, 0)' }
+                ])
+            }
+        }]
+    };
+    myChart.setOption(option);
+</script>
+</body>
+</html>

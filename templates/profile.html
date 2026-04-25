@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>个人中心 - 我的成就</title>
+<script src="https://modao.cc/agent-py/static/source/js/tailwindcss.3.4.3.js"></script>
+<script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.1.0.7.js"></script>
+<style>
+        body { background-color: #f3f4f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .phone-container { width: 375px; height: 812px; background: #f8fafc; border-radius: 40px; position: relative; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border: 8px solid #1a1a1a; display: flex; flex-direction: column; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body>
+<div class="phone-container">
+<!-- 头部背景 -->
+<div class="h-64 bg-gradient-to-br from-orange-400 via-orange-500 to-orange-600 p-8 pt-16 shrink-0 text-white relative">
+<div class="flex items-center gap-4">
+<img class="w-20 h-20 rounded-3xl border-4 border-white/20 object-cover" src="/agent-py/static/source/images/placeholder.svg"/>
+<div>
+<h2 class="text-xl font-black">张小喵 <iconify-icon class="text-sm opacity-50" icon="ph:pencil-simple-fill"></iconify-icon></h2>
+<p class="text-white/80 text-xs mt-1">计算机科学与技术 · 2024级</p>
+<div class="flex gap-2 mt-3">
+<span class="bg-white/20 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-bold">猫协志愿者</span>
+<span class="bg-yellow-400 text-orange-900 px-2 py-0.5 rounded text-[10px] font-bold">Lv.8 守护者</span>
+</div>
+</div>
+</div>
+<!-- 管理入口 (浮动) -->
+<button class="absolute top-16 right-6 w-10 h-10 bg-black/10 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/10">
+<iconify-icon class="text-xl" icon="ph:gear-six-bold"></iconify-icon>
+</button>
+</div>
+<!-- 内容区域 -->
+<div class="flex-1 overflow-y-auto hide-scrollbar px-6 -mt-8 relative z-10 pb-24">
+<!-- 我的成就 -->
+<div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 mb-6">
+<h3 class="text-sm font-black text-gray-800 mb-4 flex justify-between items-center">
+                    猫咪成就集章
+                    <span class="text-[10px] text-orange-500 font-bold">已集齐 12/42</span>
+</h3>
+<div class="grid grid-cols-4 gap-4">
+<div class="flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-500 text-xl">
+<iconify-icon icon="ph:cat-bold"></iconify-icon>
+</div>
+<span class="text-[9px] text-gray-400 font-bold">初遇橘色</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-500 text-xl">
+<iconify-icon icon="ph:tree-bold"></iconify-icon>
+</div>
+<span class="text-[9px] text-gray-400 font-bold">林间偶遇</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 text-xl">
+<iconify-icon icon="ph:cloud-sun-bold"></iconify-icon>
+</div>
+<span class="text-[9px] text-gray-400 font-bold">暖阳记录</span>
+</div>
+<div class="flex flex-col items-center gap-2 opacity-30 grayscale">
+<div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 text-xl">
+<iconify-icon icon="ph:camera-bold"></iconify-icon>
+</div>
+<span class="text-[9px] text-gray-400 font-bold">百次打卡</span>
+</div>
+</div>
+</div>
+<!-- 数据统计 -->
+<div class="grid grid-cols-3 gap-3 mb-6">
+<div class="bg-white p-4 rounded-2xl text-center shadow-sm border border-gray-100">
+<p class="text-lg font-black text-gray-800">156</p>
+<p class="text-[10px] text-gray-400 mt-1 uppercase">打卡总数</p>
+</div>
+<div class="bg-white p-4 rounded-2xl text-center shadow-sm border border-gray-100">
+<p class="text-lg font-black text-gray-800">28</p>
+<p class="text-[10px] text-gray-400 mt-1 uppercase">认识猫咪</p>
+</div>
+<div class="bg-white p-4 rounded-2xl text-center shadow-sm border border-gray-100">
+<p class="text-lg font-black text-gray-800">5.2k</p>
+<p class="text-[10px] text-gray-400 mt-1 uppercase">获赞能量</p>
+</div>
+</div>
+<!-- 功能菜单 -->
+<div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 mb-6">
+<button class="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors border-b border-gray-50">
+<div class="flex items-center gap-3">
+<iconify-icon class="text-xl text-blue-500" icon="ph:history-bold"></iconify-icon>
+<span class="text-sm font-medium text-gray-700">我的打卡记录</span>
+</div>
+<iconify-icon class="text-gray-300" icon="tabler:chevron-right"></iconify-icon>
+</button>
+<button class="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors border-b border-gray-50 text-orange-600">
+<div class="flex items-center gap-3">
+<iconify-icon class="text-xl" icon="ph:shield-check-bold"></iconify-icon>
+<span class="text-sm font-bold">管理员·维护入口</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 bg-red-500 rounded-full"></span>
+<span class="text-xs text-red-500 font-bold ml-1">2 待审</span>
+<iconify-icon class="text-gray-300 ml-2" icon="tabler:chevron-right"></iconify-icon>
+</div>
+</button>
+<button class="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors border-b border-gray-50">
+<div class="flex items-center gap-3">
+<iconify-icon class="text-xl text-green-500" icon="ph:headset-bold"></iconify-icon>
+<span class="text-sm font-medium text-gray-700">问题反馈 / 伤猫报警</span>
+</div>
+<iconify-icon class="text-gray-300" icon="tabler:chevron-right"></iconify-icon>
+</button>
+<button class="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors">
+<div class="flex items-center gap-3">
+<iconify-icon class="text-xl text-pink-500" icon="ph:hand-heart-bold"></iconify-icon>
+<span class="text-sm font-medium text-gray-700">爱心认养计划</span>
+</div>
+<iconify-icon class="text-gray-300" icon="tabler:chevron-right"></iconify-icon>
+</button>
+</div>
+<button class="w-full py-4 text-gray-400 text-xs font-medium">退出当前账号</button>
+</div>
+<!-- 底部导航 -->
+<div class="absolute bottom-0 w-full h-20 bg-white border-t border-gray-100 px-6 flex justify-between items-center z-50">
+<a class="flex flex-col items-center gap-1 text-gray-400" href="index.html">
+<iconify-icon class="text-2xl" icon="ri:map-2-line"></iconify-icon>
+<span class="text-[10px]">地图</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400" href="list.html">
+<iconify-icon class="text-2xl" icon="ri:function-line"></iconify-icon>
+<span class="text-[10px]">图鉴</span>
+</a>
+<a class="flex flex-col items-center -mt-10" href="check-in.html">
+<div class="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl shadow-lg shadow-orange-200 flex items-center justify-center text-white text-2xl border-4 border-white">
+<iconify-icon icon="tabler:camera-plus"></iconify-icon>
+</div>
+<span class="text-[10px] mt-1 text-orange-500 font-bold">打卡</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400" href="stats.html">
+<iconify-icon class="text-2xl" icon="ri:bar-chart-box-line"></iconify-icon>
+<span class="text-[10px]">看板</span>
+</a>
+<div class="flex flex-col items-center gap-1 text-orange-500">
+<iconify-icon class="text-2xl" icon="ri:user-3-fill"></iconify-icon>
+<span class="text-[10px] font-bold">我的</span>
+</div>
+</div>
+</div>
+</body>
+</html>
